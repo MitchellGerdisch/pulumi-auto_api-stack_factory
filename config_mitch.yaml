@@ -2,6 +2,7 @@
 pulumi: # The pulumi project and stack could be derived from other abstracted values.
   project: OtherDevEnvironment
   stack: Mitch
+pattern: "network-db"
 vpc:
   cidr: 10.201.0.0/16
 # db:

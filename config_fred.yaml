@@ -2,9 +2,10 @@
 pulumi: # The pulumi project and stack could be derived from other abstracted values.
   project: DevEnvironment
   stack: Fred
+pattern: "network-db"
 vpc:
   cidr: 10.200.0.0/16
-db:
-  name: mitchdb
-  user: admin
-  password: Gerdisch419
+# db:
+#   name: mitchdb
+#   user: admin
+#   password: Gerdisch419

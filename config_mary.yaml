@@ -1,0 +1,7 @@
+---
+pulumi: # The pulumi project and stack could be derived from other abstracted values.
+  project: DevEnvironment
+  stack: Mary
+pattern: "s3"
+bucket:
+  acl: "public-read"
