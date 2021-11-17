@@ -6,21 +6,21 @@ import pulumi
 from pulumi import automation as auto
 from pulumi_aws import s3
 
+
 ### This program and the related config and related plugins install is the part that needs to be repeated for different patterns
 ### Using component resources can abstract this further as done below.
 def create_pulumi_program(base_name, config):
-    import network # Not sure why I have to import network in this scope - maybe because there's no __init__.py type of stuff?
-    import backend
+    from components import network
+    from components import backend
 
     vpc_cidr = config['vpc']['cidr']
-
     network = network.Vpc(f'{base_name}-net', network.VpcArgs(cidr_block=vpc_cidr))
     pulumi.export("vpc_id", network.vpc.id)
     subnet_ids=[]
     for subnet in network.subnets:
         subnet_ids.append(subnet.id)
 
-    # Create a backend DB instance
+    # Create a backend DB instance if config set
     if ('db' in config.keys()):
         db_name = config['db']['name']
         db_user = config['db']['user']

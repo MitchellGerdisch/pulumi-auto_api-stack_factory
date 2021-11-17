@@ -1,5 +1,5 @@
 ---
-pulumi:
+pulumi: # The pulumi project and stack could be derived from other abstracted values.
   project: OtherDevEnvironment
   stack: Mitch
 vpc:
