@@ -4,4 +4,4 @@ pulumi: # The pulumi project and stack could be derived from other abstracted va
   stack: Mary
 pattern: "s3"
 bucket:
-  acl: "public-read"
+  acl: "private"
