@@ -1,0 +1,1345 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2021-10-12T11:08:13.032395-05:00",
+            "magic": "a22075a99dc2b67c7b7f26661e359fc7871152095f85df0c01fcff4f0fab467a",
+            "version": "v3.14.0"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "demo",
+                "project": "aws-py-wordpress-fargate-rds",
+                "stack": "dev-mitch"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default",
+                "custom": true,
+                "id": "2e267e8e-3595-496f-b527-9dbd2400ddfd",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "region": "us-east-1",
+                    "version": "3.38.1"
+                },
+                "outputs": {
+                    "region": "us-east-1",
+                    "version": "3.38.1"
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:pulumi:Stack::aws-py-wordpress-fargate-rds-dev-mitch",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "outputs": {
+                    "DB Endpoint": "wp-example-be-rdsc9cb2fa.c3vf5g3d8zs9.us-east-1.rds.amazonaws.com",
+                    "DB Password": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "AAABANxfP/d0qnuMuJWWrxYf6oGAQK0qHBhcsy7YJESZ7h1zYZnwoq2cuYPK"
+                    },
+                    "DB User Name": "admin",
+                    "ECS Cluster Name": "wp-example-fe-ecs-9932365",
+                    "Web Service URL": "http://wp-example-fe-alb-b1b6b2f-2026062467.us-east-1.elb.amazonaws.com"
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "custom": false,
+                "type": "custom:resource:VPC",
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:pulumi:Stack::aws-py-wordpress-fargate-rds-dev-mitch"
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1",
+                "custom": true,
+                "id": "3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "region": "us-east-1",
+                    "version": "3.38.1"
+                },
+                "outputs": {
+                    "region": "us-east-1",
+                    "version": "3.38.1"
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend::wp-example-be",
+                "custom": false,
+                "type": "custom:resource:Backend",
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:pulumi:Stack::aws-py-wordpress-fargate-rds-dev-mitch"
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "custom": false,
+                "type": "custom:resource:Frontend",
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:pulumi:Stack::aws-py-wordpress-fargate-rds-dev-mitch"
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:iam/role:Role::wp-example-fe-task-role",
+                "custom": true,
+                "id": "wp-example-fe-task-role-77f77bf",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Version\": \"2008-10-17\", \"Statement\": [{\"Sid\": \"\", \"Effect\": \"Allow\", \"Principal\": {\"Service\": \"ecs-tasks.amazonaws.com\"}, \"Action\": \"sts:AssumeRole\"}]}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "wp-example-fe-task-role-77f77bf",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::052848974346:role/wp-example-fe-task-role-77f77bf",
+                    "assumeRolePolicy": "{\"Version\":\"2008-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2021-10-12T16:02:42Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "wp-example-fe-task-role-77f77bf",
+                    "inlinePolicies": [
+                        {
+                            "name": "",
+                            "policy": ""
+                        }
+                    ],
+                    "managedPolicyArns": [],
+                    "maxSessionDuration": 3600,
+                    "name": "wp-example-fe-task-role-77f77bf",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROAQYTQLLIFIL2LJMALI"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:iam/rolePolicyAttachment:RolePolicyAttachment::wp-example-fe-task-policy",
+                "custom": true,
+                "id": "wp-example-fe-task-role-77f77bf-20211012160249957500000001",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+                    "role": "wp-example-fe-task-role-77f77bf"
+                },
+                "outputs": {
+                    "id": "wp-example-fe-task-role-77f77bf-20211012160249957500000001",
+                    "policyArn": "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+                    "role": "wp-example-fe-task-role-77f77bf"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:iam/role:Role::wp-example-fe-task-role"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:iam/role:Role::wp-example-fe-task-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/cluster:Cluster::wp-example-fe-ecs",
+                "custom": true,
+                "id": "arn:aws:ecs:us-east-1:052848974346:cluster/wp-example-fe-ecs-9932365",
+                "type": "aws:ecs/cluster:Cluster",
+                "inputs": {
+                    "__defaults": [
+                        "name"
+                    ],
+                    "name": "wp-example-fe-ecs-9932365"
+                },
+                "outputs": {
+                    "arn": "arn:aws:ecs:us-east-1:052848974346:cluster/wp-example-fe-ecs-9932365",
+                    "capacityProviders": [],
+                    "defaultCapacityProviderStrategies": [],
+                    "id": "arn:aws:ecs:us-east-1:052848974346:cluster/wp-example-fe-ecs-9932365",
+                    "name": "wp-example-fe-ecs-9932365",
+                    "settings": [],
+                    "tags": {}
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1"
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc",
+                "custom": true,
+                "id": "vpc-0e22e1c416019aad4",
+                "type": "aws:ec2/vpc:Vpc",
+                "inputs": {
+                    "__defaults": [
+                        "assignGeneratedIpv6CidrBlock"
+                    ],
+                    "assignGeneratedIpv6CidrBlock": false,
+                    "cidrBlock": "10.100.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": {
+                        "Name": "wp-example-net-vpc",
+                        "__defaults": []
+                    }
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:vpc/vpc-0e22e1c416019aad4",
+                    "assignGeneratedIpv6CidrBlock": false,
+                    "cidrBlock": "10.100.0.0/16",
+                    "defaultNetworkAclId": "acl-0728d9090f2d49e65",
+                    "defaultRouteTableId": "rtb-0e34ed887daf11461",
+                    "defaultSecurityGroupId": "sg-05d11d01b9811f950",
+                    "dhcpOptionsId": "dopt-34f2a34f",
+                    "enableClassiclink": false,
+                    "enableClassiclinkDnsSupport": false,
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "id": "vpc-0e22e1c416019aad4",
+                    "instanceTenancy": "default",
+                    "ipv6AssociationId": "",
+                    "ipv6CidrBlock": "",
+                    "mainRouteTableId": "rtb-0e34ed887daf11461",
+                    "ownerId": "052848974346",
+                    "tags": {
+                        "Name": "wp-example-net-vpc"
+                    },
+                    "tagsAll": {
+                        "Name": "wp-example-net-vpc"
+                    }
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "cidrBlock": null,
+                    "enableDnsHostnames": null,
+                    "enableDnsSupport": null,
+                    "instanceTenancy": null,
+                    "tags": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/internetGateway:InternetGateway::wp-example-net-igw",
+                "custom": true,
+                "id": "igw-08546fc3635204371",
+                "type": "aws:ec2/internetGateway:InternetGateway",
+                "inputs": {
+                    "__defaults": [],
+                    "tags": {
+                        "Name": "wp-example-net-igw",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:internet-gateway/igw-08546fc3635204371",
+                    "id": "igw-08546fc3635204371",
+                    "ownerId": "052848974346",
+                    "tags": {
+                        "Name": "wp-example-net-igw"
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/targetGroup:TargetGroup::wp-example-fe-app-tg",
+                "custom": true,
+                "id": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e",
+                "type": "aws:lb/targetGroup:TargetGroup",
+                "inputs": {
+                    "__defaults": [
+                        "deregistrationDelay",
+                        "lambdaMultiValueHeadersEnabled",
+                        "name",
+                        "proxyProtocolV2",
+                        "slowStart"
+                    ],
+                    "deregistrationDelay": 300,
+                    "healthCheck": {
+                        "__defaults": [
+                            "enabled",
+                            "port",
+                            "unhealthyThreshold"
+                        ],
+                        "enabled": true,
+                        "healthyThreshold": 2,
+                        "interval": 5,
+                        "matcher": "200-399",
+                        "port": "traffic-port",
+                        "protocol": "HTTP",
+                        "timeout": 4,
+                        "unhealthyThreshold": 3
+                    },
+                    "lambdaMultiValueHeadersEnabled": false,
+                    "name": "wp-example-fe-app-tg-53f746b",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "proxyProtocolV2": false,
+                    "slowStart": 0,
+                    "targetType": "ip",
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "arn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e",
+                    "arnSuffix": "targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e",
+                    "deregistrationDelay": 300,
+                    "healthCheck": {
+                        "enabled": true,
+                        "healthyThreshold": 2,
+                        "interval": 5,
+                        "matcher": "200-399",
+                        "path": "/",
+                        "port": "traffic-port",
+                        "protocol": "HTTP",
+                        "timeout": 4,
+                        "unhealthyThreshold": 3
+                    },
+                    "id": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e",
+                    "lambdaMultiValueHeadersEnabled": false,
+                    "loadBalancingAlgorithmType": "round_robin",
+                    "name": "wp-example-fe-app-tg-53f746b",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "protocolVersion": "HTTP1",
+                    "proxyProtocolV2": false,
+                    "slowStart": 0,
+                    "stickiness": {
+                        "cookieDuration": 86400,
+                        "enabled": false,
+                        "type": "lb_cookie"
+                    },
+                    "tags": {},
+                    "targetType": "ip",
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "healthCheck": null,
+                    "port": null,
+                    "protocol": null,
+                    "targetType": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                },
+                "aliases": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:elasticloadbalancingv2/targetGroup:TargetGroup::wp-example-fe-app-tg"
+                ]
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTable:RouteTable::wp-example-net-rt",
+                "custom": true,
+                "id": "rtb-0d0d83c7e3ea08262",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "routes": [
+                        {
+                            "__defaults": [],
+                            "cidrBlock": "0.0.0.0/0",
+                            "gatewayId": "igw-08546fc3635204371"
+                        }
+                    ],
+                    "tags": {
+                        "Name": "wp-example-net-rt",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:route-table/rtb-0d0d83c7e3ea08262",
+                    "id": "rtb-0d0d83c7e3ea08262",
+                    "ownerId": "052848974346",
+                    "propagatingVgws": [],
+                    "routes": [
+                        {
+                            "carrierGatewayId": "",
+                            "cidrBlock": "0.0.0.0/0",
+                            "destinationPrefixListId": "",
+                            "egressOnlyGatewayId": "",
+                            "gatewayId": "igw-08546fc3635204371",
+                            "instanceId": "",
+                            "ipv6CidrBlock": "",
+                            "localGatewayId": "",
+                            "natGatewayId": "",
+                            "networkInterfaceId": "",
+                            "transitGatewayId": "",
+                            "vpcEndpointId": "",
+                            "vpcPeeringConnectionId": ""
+                        }
+                    ],
+                    "tags": {
+                        "Name": "wp-example-net-rt"
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/internetGateway:InternetGateway::wp-example-net-igw"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "routes": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/internetGateway:InternetGateway::wp-example-net-igw"
+                    ],
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-rds-sg",
+                "custom": true,
+                "id": "sg-08ea54005323fb948",
+                "type": "aws:ec2/securityGroup:SecurityGroup",
+                "inputs": {
+                    "__defaults": [
+                        "name",
+                        "revokeRulesOnDelete"
+                    ],
+                    "description": "Allow client access.",
+                    "egress": [
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "fromPort": 0,
+                            "protocol": "-1",
+                            "self": false,
+                            "toPort": 0
+                        }
+                    ],
+                    "ingress": [
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "Allow rds access.",
+                            "fromPort": 3306,
+                            "protocol": "tcp",
+                            "self": false,
+                            "toPort": 3306
+                        }
+                    ],
+                    "name": "wp-example-net-rds-sg-1154159",
+                    "revokeRulesOnDelete": false,
+                    "tags": {
+                        "Name": "wp-example-net-rds-sg",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":900000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:security-group/sg-08ea54005323fb948",
+                    "description": "Allow client access.",
+                    "egress": [
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "",
+                            "fromPort": 0,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "-1",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 0
+                        }
+                    ],
+                    "id": "sg-08ea54005323fb948",
+                    "ingress": [
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "Allow rds access.",
+                            "fromPort": 3306,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "tcp",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 3306
+                        }
+                    ],
+                    "name": "wp-example-net-rds-sg-1154159",
+                    "namePrefix": "",
+                    "ownerId": "052848974346",
+                    "revokeRulesOnDelete": false,
+                    "tags": {
+                        "Name": "wp-example-net-rds-sg"
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "description": null,
+                    "egress": null,
+                    "ingress": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-fe-sg",
+                "custom": true,
+                "id": "sg-0808cea54e95682d3",
+                "type": "aws:ec2/securityGroup:SecurityGroup",
+                "inputs": {
+                    "__defaults": [
+                        "name",
+                        "revokeRulesOnDelete"
+                    ],
+                    "description": "Allow all HTTP(s) traffic.",
+                    "egress": [
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "fromPort": 0,
+                            "protocol": "-1",
+                            "self": false,
+                            "toPort": 0
+                        }
+                    ],
+                    "ingress": [
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "Allow https.",
+                            "fromPort": 443,
+                            "protocol": "tcp",
+                            "self": false,
+                            "toPort": 443
+                        },
+                        {
+                            "__defaults": [
+                                "self"
+                            ],
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "Allow http access",
+                            "fromPort": 80,
+                            "protocol": "tcp",
+                            "self": false,
+                            "toPort": 80
+                        }
+                    ],
+                    "name": "wp-example-net-fe-sg-3e71483",
+                    "revokeRulesOnDelete": false,
+                    "tags": {
+                        "Name": "wp-example-net-fe-sg",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":900000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:security-group/sg-0808cea54e95682d3",
+                    "description": "Allow all HTTP(s) traffic.",
+                    "egress": [
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "",
+                            "fromPort": 0,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "-1",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 0
+                        }
+                    ],
+                    "id": "sg-0808cea54e95682d3",
+                    "ingress": [
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "Allow http access",
+                            "fromPort": 80,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "tcp",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 80
+                        },
+                        {
+                            "cidrBlocks": [
+                                "0.0.0.0/0"
+                            ],
+                            "description": "Allow https.",
+                            "fromPort": 443,
+                            "ipv6CidrBlocks": [],
+                            "prefixListIds": [],
+                            "protocol": "tcp",
+                            "securityGroups": [],
+                            "self": false,
+                            "toPort": 443
+                        }
+                    ],
+                    "name": "wp-example-net-fe-sg-3e71483",
+                    "namePrefix": "",
+                    "ownerId": "052848974346",
+                    "revokeRulesOnDelete": false,
+                    "tags": {
+                        "Name": "wp-example-net-fe-sg"
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "description": null,
+                    "egress": null,
+                    "ingress": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b",
+                "custom": true,
+                "id": "subnet-0d540dc901da90827",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1b",
+                    "cidrBlock": "10.100.1.0/24",
+                    "mapPublicIpOnLaunch": true,
+                    "tags": {
+                        "Name": "wp-example-net-subnet-us-east-1b",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:subnet/subnet-0d540dc901da90827",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1b",
+                    "availabilityZoneId": "use1-az2",
+                    "cidrBlock": "10.100.1.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "id": "subnet-0d540dc901da90827",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": true,
+                    "outpostArn": "",
+                    "ownerId": "052848974346",
+                    "tags": {
+                        "Name": "wp-example-net-subnet-us-east-1b"
+                    },
+                    "tagsAll": {
+                        "Name": "wp-example-net-subnet-us-east-1b"
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "assignIpv6AddressOnCreation": null,
+                    "availabilityZone": null,
+                    "cidrBlock": null,
+                    "mapPublicIpOnLaunch": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                "custom": true,
+                "id": "subnet-0b4f3a3903c7ce64a",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1a",
+                    "cidrBlock": "10.100.0.0/24",
+                    "mapPublicIpOnLaunch": true,
+                    "tags": {
+                        "Name": "wp-example-net-subnet-us-east-1a",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:052848974346:subnet/subnet-0b4f3a3903c7ce64a",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1a",
+                    "availabilityZoneId": "use1-az1",
+                    "cidrBlock": "10.100.0.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "id": "subnet-0b4f3a3903c7ce64a",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": true,
+                    "outpostArn": "",
+                    "ownerId": "052848974346",
+                    "tags": {
+                        "Name": "wp-example-net-subnet-us-east-1a"
+                    },
+                    "tagsAll": {
+                        "Name": "wp-example-net-subnet-us-east-1a"
+                    },
+                    "vpcId": "vpc-0e22e1c416019aad4"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "assignIpv6AddressOnCreation": null,
+                    "availabilityZone": null,
+                    "cidrBlock": null,
+                    "mapPublicIpOnLaunch": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/vpc:Vpc::wp-example-net-vpc"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTableAssociation:RouteTableAssociation::vpc-route-table-assoc-us-east-1b",
+                "custom": true,
+                "id": "rtbassoc-0144060ecf09a1f5d",
+                "type": "aws:ec2/routeTableAssociation:RouteTableAssociation",
+                "inputs": {
+                    "__defaults": [],
+                    "routeTableId": "rtb-0d0d83c7e3ea08262",
+                    "subnetId": "subnet-0d540dc901da90827"
+                },
+                "outputs": {
+                    "id": "rtbassoc-0144060ecf09a1f5d",
+                    "routeTableId": "rtb-0d0d83c7e3ea08262",
+                    "subnetId": "subnet-0d540dc901da90827"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTable:RouteTable::wp-example-net-rt",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "routeTableId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTable:RouteTable::wp-example-net-rt"
+                    ],
+                    "subnetId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTableAssociation:RouteTableAssociation::vpc-route-table-assoc-us-east-1a",
+                "custom": true,
+                "id": "rtbassoc-0ad762723a696259d",
+                "type": "aws:ec2/routeTableAssociation:RouteTableAssociation",
+                "inputs": {
+                    "__defaults": [],
+                    "routeTableId": "rtb-0d0d83c7e3ea08262",
+                    "subnetId": "subnet-0b4f3a3903c7ce64a"
+                },
+                "outputs": {
+                    "id": "rtbassoc-0ad762723a696259d",
+                    "routeTableId": "rtb-0d0d83c7e3ea08262",
+                    "subnetId": "subnet-0b4f3a3903c7ce64a"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC::wp-example-net",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTable:RouteTable::wp-example-net-rt",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "routeTableId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/routeTable:RouteTable::wp-example-net-rt"
+                    ],
+                    "subnetId": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend$aws:rds/subnetGroup:SubnetGroup::wp-example-be-sng",
+                "custom": true,
+                "id": "wp-example-be-sng-7f2eb3e",
+                "type": "aws:rds/subnetGroup:SubnetGroup",
+                "inputs": {
+                    "__defaults": [
+                        "name"
+                    ],
+                    "description": "Managed by Pulumi",
+                    "name": "wp-example-be-sng-7f2eb3e",
+                    "subnetIds": [
+                        "subnet-0b4f3a3903c7ce64a",
+                        "subnet-0d540dc901da90827"
+                    ],
+                    "tags": {
+                        "Name": "wp-example-be-sng",
+                        "__defaults": []
+                    }
+                },
+                "outputs": {
+                    "arn": "arn:aws:rds:us-east-1:052848974346:subgrp:wp-example-be-sng-7f2eb3e",
+                    "description": "Managed by Pulumi",
+                    "id": "wp-example-be-sng-7f2eb3e",
+                    "name": "wp-example-be-sng-7f2eb3e",
+                    "subnetIds": [
+                        "subnet-0b4f3a3903c7ce64a",
+                        "subnet-0d540dc901da90827"
+                    ],
+                    "tags": {
+                        "Name": "wp-example-be-sng"
+                    }
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend::wp-example-be",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "description": null,
+                    "subnetIds": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b"
+                    ],
+                    "tags": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/loadBalancer:LoadBalancer::wp-example-fe-alb",
+                "custom": true,
+                "id": "arn:aws:elasticloadbalancing:us-east-1:052848974346:loadbalancer/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1",
+                "type": "aws:lb/loadBalancer:LoadBalancer",
+                "inputs": {
+                    "__defaults": [
+                        "dropInvalidHeaderFields",
+                        "enableCrossZoneLoadBalancing",
+                        "enableDeletionProtection",
+                        "enableHttp2",
+                        "idleTimeout",
+                        "loadBalancerType",
+                        "name"
+                    ],
+                    "dropInvalidHeaderFields": false,
+                    "enableCrossZoneLoadBalancing": false,
+                    "enableDeletionProtection": false,
+                    "enableHttp2": true,
+                    "idleTimeout": 60,
+                    "loadBalancerType": "application",
+                    "name": "wp-example-fe-alb-b1b6b2f",
+                    "securityGroups": [
+                        "sg-0808cea54e95682d3"
+                    ],
+                    "subnets": [
+                        "subnet-0b4f3a3903c7ce64a",
+                        "subnet-0d540dc901da90827"
+                    ]
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":600000000000,\"update\":600000000000}}",
+                    "accessLogs": {
+                        "bucket": "",
+                        "enabled": false,
+                        "prefix": ""
+                    },
+                    "arn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:loadbalancer/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1",
+                    "arnSuffix": "app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1",
+                    "customerOwnedIpv4Pool": "",
+                    "dnsName": "wp-example-fe-alb-b1b6b2f-2026062467.us-east-1.elb.amazonaws.com",
+                    "dropInvalidHeaderFields": false,
+                    "enableDeletionProtection": false,
+                    "enableHttp2": true,
+                    "id": "arn:aws:elasticloadbalancing:us-east-1:052848974346:loadbalancer/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1",
+                    "idleTimeout": 60,
+                    "internal": false,
+                    "ipAddressType": "ipv4",
+                    "loadBalancerType": "application",
+                    "name": "wp-example-fe-alb-b1b6b2f",
+                    "securityGroups": [
+                        "sg-0808cea54e95682d3"
+                    ],
+                    "subnetMappings": [
+                        {
+                            "allocationId": "",
+                            "ipv6Address": "",
+                            "outpostId": "",
+                            "privateIpv4Address": "",
+                            "subnetId": "subnet-0d540dc901da90827"
+                        },
+                        {
+                            "allocationId": "",
+                            "ipv6Address": "",
+                            "outpostId": "",
+                            "privateIpv4Address": "",
+                            "subnetId": "subnet-0b4f3a3903c7ce64a"
+                        }
+                    ],
+                    "subnets": [
+                        "subnet-0b4f3a3903c7ce64a",
+                        "subnet-0d540dc901da90827"
+                    ],
+                    "tags": {},
+                    "vpcId": "vpc-0e22e1c416019aad4",
+                    "zoneId": "Z35SXDOTRQ7X7K"
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-fe-sg"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "securityGroups": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-fe-sg"
+                    ],
+                    "subnets": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b"
+                    ]
+                },
+                "aliases": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:elasticloadbalancingv2/loadBalancer:LoadBalancer::wp-example-fe-alb"
+                ]
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/listener:Listener::wp-example-fe-listener",
+                "custom": true,
+                "id": "arn:aws:elasticloadbalancing:us-east-1:052848974346:listener/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1/191283cbe0481c64",
+                "type": "aws:lb/listener:Listener",
+                "inputs": {
+                    "__defaults": [],
+                    "defaultActions": [
+                        {
+                            "__defaults": [],
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e",
+                            "type": "forward"
+                        }
+                    ],
+                    "loadBalancerArn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:loadbalancer/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1",
+                    "port": 80
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"read\":600000000000}}",
+                    "arn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:listener/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1/191283cbe0481c64",
+                    "defaultActions": [
+                        {
+                            "authenticateCognito": null,
+                            "authenticateOidc": null,
+                            "fixedResponse": null,
+                            "forward": null,
+                            "order": 1,
+                            "redirect": null,
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e",
+                            "type": "forward"
+                        }
+                    ],
+                    "id": "arn:aws:elasticloadbalancing:us-east-1:052848974346:listener/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1/191283cbe0481c64",
+                    "loadBalancerArn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:loadbalancer/app/wp-example-fe-alb-b1b6b2f/9a87385a4bcc6df1",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "sslPolicy": ""
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/loadBalancer:LoadBalancer::wp-example-fe-alb",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/targetGroup:TargetGroup::wp-example-fe-app-tg"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "defaultActions": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/targetGroup:TargetGroup::wp-example-fe-app-tg"
+                    ],
+                    "loadBalancerArn": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/loadBalancer:LoadBalancer::wp-example-fe-alb"
+                    ],
+                    "port": null
+                },
+                "aliases": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:elasticloadbalancingv2/listener:Listener::wp-example-fe-listener"
+                ]
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend$aws:rds/instance:Instance::wp-example-be-rds",
+                "custom": true,
+                "id": "wp-example-be-rdsc9cb2fa",
+                "type": "aws:rds/instance:Instance",
+                "inputs": {
+                    "__defaults": [
+                        "autoMinorVersionUpgrade",
+                        "copyTagsToSnapshot",
+                        "deleteAutomatedBackups",
+                        "identifier",
+                        "monitoringInterval",
+                        "performanceInsightsEnabled"
+                    ],
+                    "allocatedStorage": 20,
+                    "autoMinorVersionUpgrade": true,
+                    "copyTagsToSnapshot": false,
+                    "dbSubnetGroupName": "wp-example-be-sng-7f2eb3e",
+                    "deleteAutomatedBackups": true,
+                    "engine": "mysql",
+                    "engineVersion": "5.7",
+                    "identifier": "wp-example-be-rdsc9cb2fa",
+                    "instanceClass": "db.t2.micro",
+                    "monitoringInterval": 0,
+                    "name": "lampdb",
+                    "password": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "AAABACITiY2IvN2rlQJdkxzfAp5dNXVQtoLQVlN6UifN5NIzwtSdzIYjv3F7"
+                    },
+                    "performanceInsightsEnabled": false,
+                    "publiclyAccessible": false,
+                    "skipFinalSnapshot": true,
+                    "storageType": "gp2",
+                    "username": "admin",
+                    "vpcSecurityGroupIds": [
+                        "sg-08ea54005323fb948"
+                    ]
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":2400000000000,\"delete\":3600000000000,\"update\":4800000000000},\"schema_version\":\"1\"}",
+                    "address": "wp-example-be-rdsc9cb2fa.c3vf5g3d8zs9.us-east-1.rds.amazonaws.com",
+                    "allocatedStorage": 20,
+                    "arn": "arn:aws:rds:us-east-1:052848974346:db:wp-example-be-rdsc9cb2fa",
+                    "autoMinorVersionUpgrade": true,
+                    "availabilityZone": "us-east-1b",
+                    "backupRetentionPeriod": 0,
+                    "backupWindow": "09:42-10:12",
+                    "caCertIdentifier": "rds-ca-2019",
+                    "copyTagsToSnapshot": false,
+                    "dbSubnetGroupName": "wp-example-be-sng-7f2eb3e",
+                    "deleteAutomatedBackups": true,
+                    "deletionProtection": false,
+                    "domain": "",
+                    "domainIamRoleName": "",
+                    "enabledCloudwatchLogsExports": [],
+                    "endpoint": "wp-example-be-rdsc9cb2fa.c3vf5g3d8zs9.us-east-1.rds.amazonaws.com:3306",
+                    "engine": "mysql",
+                    "engineVersion": "5.7.33",
+                    "hostedZoneId": "Z2R2ITUGPM61AM",
+                    "iamDatabaseAuthenticationEnabled": false,
+                    "id": "wp-example-be-rdsc9cb2fa",
+                    "identifier": "wp-example-be-rdsc9cb2fa",
+                    "instanceClass": "db.t2.micro",
+                    "iops": 0,
+                    "kmsKeyId": "",
+                    "latestRestorableTime": "0001-01-01T00:00:00Z",
+                    "licenseModel": "general-public-license",
+                    "maintenanceWindow": "mon:05:22-mon:05:52",
+                    "maxAllocatedStorage": 0,
+                    "monitoringInterval": 0,
+                    "monitoringRoleArn": "",
+                    "multiAz": false,
+                    "name": "lampdb",
+                    "optionGroupName": "default:mysql-5-7",
+                    "parameterGroupName": "default.mysql5.7",
+                    "password": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "AAABAABEnjDEg7bsdj4TSZAEL0D2L6GSWUak5F1XXDsrDgsobaGJMzJpPN1u"
+                    },
+                    "performanceInsightsEnabled": false,
+                    "performanceInsightsKmsKeyId": "",
+                    "performanceInsightsRetentionPeriod": 0,
+                    "port": 3306,
+                    "publiclyAccessible": false,
+                    "replicas": [],
+                    "replicateSourceDb": "",
+                    "resourceId": "db-KLEQZMXMFAZX6O3IEPWACEVOLY",
+                    "securityGroupNames": [],
+                    "skipFinalSnapshot": true,
+                    "status": "available",
+                    "storageEncrypted": false,
+                    "storageType": "gp2",
+                    "tags": {},
+                    "timezone": "",
+                    "username": "admin",
+                    "vpcSecurityGroupIds": [
+                        "sg-08ea54005323fb948"
+                    ]
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend::wp-example-be",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-rds-sg",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend$aws:rds/subnetGroup:SubnetGroup::wp-example-be-sng"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "allocatedStorage": null,
+                    "dbSubnetGroupName": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend$aws:rds/subnetGroup:SubnetGroup::wp-example-be-sng"
+                    ],
+                    "engine": null,
+                    "engineVersion": null,
+                    "instanceClass": null,
+                    "name": null,
+                    "password": null,
+                    "publiclyAccessible": null,
+                    "skipFinalSnapshot": null,
+                    "storageType": null,
+                    "username": null,
+                    "vpcSecurityGroupIds": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-rds-sg"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/taskDefinition:TaskDefinition::wp-example-fe-app-task",
+                "custom": true,
+                "id": "fargate-task-definition",
+                "type": "aws:ecs/taskDefinition:TaskDefinition",
+                "inputs": {
+                    "__defaults": [],
+                    "containerDefinitions": "[{\"name\": \"wp-example-fe-app-container\", \"image\": \"wordpress\", \"portMappings\": [{\"containerPort\": 80, \"hostPort\": 80, \"protocol\": \"tcp\"}], \"environment\": [{\"name\": \"WORDPRESS_DB_HOST\", \"value\": \"wp-example-be-rdsc9cb2fa.c3vf5g3d8zs9.us-east-1.rds.amazonaws.com:3306\"}, {\"name\": \"WORDPRESS_DB_NAME\", \"value\": \"lampdb\"}, {\"name\": \"WORDPRESS_DB_USER\", \"value\": \"admin\"}, {\"name\": \"WORDPRESS_DB_PASSWORD\", \"value\": \"Gerdisch419\"}]}]",
+                    "cpu": "256",
+                    "executionRoleArn": "arn:aws:iam::052848974346:role/wp-example-fe-task-role-77f77bf",
+                    "family": "fargate-task-definition",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                        "FARGATE"
+                    ]
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ecs:us-east-1:052848974346:task-definition/fargate-task-definition:64",
+                    "containerDefinitions": "[{\"cpu\":0,\"environment\":[{\"name\":\"WORDPRESS_DB_HOST\",\"value\":\"wp-example-be-rdsc9cb2fa.c3vf5g3d8zs9.us-east-1.rds.amazonaws.com:3306\"},{\"name\":\"WORDPRESS_DB_NAME\",\"value\":\"lampdb\"},{\"name\":\"WORDPRESS_DB_PASSWORD\",\"value\":\"Gerdisch419\"},{\"name\":\"WORDPRESS_DB_USER\",\"value\":\"admin\"}],\"essential\":true,\"image\":\"wordpress\",\"mountPoints\":[],\"name\":\"wp-example-fe-app-container\",\"portMappings\":[{\"containerPort\":80,\"hostPort\":80,\"protocol\":\"tcp\"}],\"volumesFrom\":[]}]",
+                    "cpu": "256",
+                    "executionRoleArn": "arn:aws:iam::052848974346:role/wp-example-fe-task-role-77f77bf",
+                    "family": "fargate-task-definition",
+                    "id": "fargate-task-definition",
+                    "inferenceAccelerators": [],
+                    "ipcMode": "",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "pidMode": "",
+                    "placementConstraints": [],
+                    "proxyConfiguration": null,
+                    "requiresCompatibilities": [
+                        "FARGATE"
+                    ],
+                    "revision": 64,
+                    "tags": {},
+                    "taskRoleArn": "",
+                    "volumes": []
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:iam/role:Role::wp-example-fe-task-role"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "containerDefinitions": null,
+                    "cpu": null,
+                    "executionRoleArn": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:iam/role:Role::wp-example-fe-task-role"
+                    ],
+                    "family": null,
+                    "memory": null,
+                    "networkMode": null,
+                    "requiresCompatibilities": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/service:Service::wp-example-fe-app-svc",
+                "custom": true,
+                "id": "arn:aws:ecs:us-east-1:052848974346:service/wp-example-fe-ecs-9932365/wp-example-fe-app-svc-e463197",
+                "type": "aws:ecs/service:Service",
+                "inputs": {
+                    "__defaults": [
+                        "deploymentMaximumPercent",
+                        "deploymentMinimumHealthyPercent",
+                        "enableEcsManagedTags",
+                        "enableExecuteCommand",
+                        "name",
+                        "schedulingStrategy",
+                        "waitForSteadyState"
+                    ],
+                    "cluster": "arn:aws:ecs:us-east-1:052848974346:cluster/wp-example-fe-ecs-9932365",
+                    "deploymentMaximumPercent": 200,
+                    "deploymentMinimumHealthyPercent": 100,
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "enableExecuteCommand": false,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                        {
+                            "__defaults": [],
+                            "containerName": "wp-example-fe-app-container",
+                            "containerPort": 80,
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e"
+                        }
+                    ],
+                    "name": "wp-example-fe-app-svc-e463197",
+                    "networkConfiguration": {
+                        "__defaults": [],
+                        "assignPublicIp": true,
+                        "securityGroups": [
+                            "sg-0808cea54e95682d3"
+                        ],
+                        "subnets": [
+                            "subnet-0b4f3a3903c7ce64a",
+                            "subnet-0d540dc901da90827"
+                        ]
+                    },
+                    "schedulingStrategy": "REPLICA",
+                    "taskDefinition": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "AAABAIsJCoQCeIdt/j6TZ0a7deY8YySco/qSN9fCmUFbq0M3fhexTFWovWQRHTjypwd72h76DBBYPYetevAn+Z0mAOnJmcGD0MnIPh3cOi2tdVjc8Nn2bG7mPVG4+QUY27ihbLrp74ZEtRf87/ND"
+                    },
+                    "waitForSteadyState": false
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"delete\":1200000000000}}",
+                    "capacityProviderStrategies": [],
+                    "cluster": "arn:aws:ecs:us-east-1:052848974346:cluster/wp-example-fe-ecs-9932365",
+                    "deploymentCircuitBreaker": {
+                        "enable": false,
+                        "rollback": false
+                    },
+                    "deploymentController": {
+                        "type": "ECS"
+                    },
+                    "deploymentMaximumPercent": 200,
+                    "deploymentMinimumHealthyPercent": 100,
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "enableExecuteCommand": false,
+                    "healthCheckGracePeriodSeconds": 0,
+                    "iamRole": "aws-service-role",
+                    "id": "arn:aws:ecs:us-east-1:052848974346:service/wp-example-fe-ecs-9932365/wp-example-fe-app-svc-e463197",
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                        {
+                            "containerName": "wp-example-fe-app-container",
+                            "containerPort": 80,
+                            "elbName": "",
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:052848974346:targetgroup/wp-example-fe-app-tg-53f746b/5d05e9cb771d102e"
+                        }
+                    ],
+                    "name": "wp-example-fe-app-svc-e463197",
+                    "networkConfiguration": {
+                        "assignPublicIp": true,
+                        "securityGroups": [
+                            "sg-0808cea54e95682d3"
+                        ],
+                        "subnets": [
+                            "subnet-0b4f3a3903c7ce64a",
+                            "subnet-0d540dc901da90827"
+                        ]
+                    },
+                    "orderedPlacementStrategies": [],
+                    "placementConstraints": [],
+                    "platformVersion": "LATEST",
+                    "propagateTags": "NONE",
+                    "schedulingStrategy": "REPLICA",
+                    "serviceRegistries": null,
+                    "tags": {},
+                    "taskDefinition": {
+                        "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                        "ciphertext": "AAABAEO6lwwNQiQUVhaSgNOSvNwBr1OJ7gF/W4P0qVGV8CxqMSprY1j3jdVnWSwSx9uYExdAQUX0kUdsr64UgvmsmzpYRDzlHnWSl+imRrIMK0YNoH8Dax2TenOTlqt8VX3IUXXiKR+NFQ4VaFKd"
+                    },
+                    "waitForSteadyState": false
+                },
+                "parent": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend::wp-example-fe",
+                "dependencies": [
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/cluster:Cluster::wp-example-fe-ecs",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/listener:Listener::wp-example-fe-listener",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend$aws:rds/instance:Instance::wp-example-be-rds",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/targetGroup:TargetGroup::wp-example-fe-app-tg",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/taskDefinition:TaskDefinition::wp-example-fe-app-task",
+                    "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-fe-sg"
+                ],
+                "provider": "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::pulumi:providers:aws::default_3_38_1::3acd92b4-001f-4008-a2aa-4df00501bcc1",
+                "propertyDependencies": {
+                    "cluster": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/cluster:Cluster::wp-example-fe-ecs"
+                    ],
+                    "desiredCount": null,
+                    "launchType": null,
+                    "loadBalancers": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:lb/targetGroup:TargetGroup::wp-example-fe-app-tg"
+                    ],
+                    "networkConfiguration": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/securityGroup:SecurityGroup::wp-example-net-fe-sg",
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1a",
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:VPC$aws:ec2/subnet:Subnet::wp-example-net-subnet-us-east-1b"
+                    ],
+                    "taskDefinition": [
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Frontend$aws:ecs/taskDefinition:TaskDefinition::wp-example-fe-app-task",
+                        "urn:pulumi:dev-mitch::aws-py-wordpress-fargate-rds::custom:resource:Backend$aws:rds/instance:Instance::wp-example-be-rds"
+                    ]
+                }
+            }
+        ]
+    }
+}

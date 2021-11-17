@@ -1,0 +1,10 @@
+---
+pulumi:
+  project: OtherDevEnvironment
+  stack: Mitch
+vpc:
+  cidr: 10.201.0.0/16
+# db:
+#   name: mitchdb
+#   user: admin
+#   password: Gerdisch419
